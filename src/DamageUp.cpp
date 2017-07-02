@@ -5,6 +5,9 @@
  *      Author: bolo
  */
 
+#include "DamageUp.hpp"
+DamageUp::DamageUp(int x,int y,int w,int h,int vel, SDL_Texture* texture,SDL_Renderer* renderer) : Powerup(x,y,w,h,vel,texture,renderer){}
+
 void DamageUp::activate(Player* player){
 
 	int c_damage = player->get_damage();
@@ -13,5 +16,7 @@ void DamageUp::activate(Player* player){
 
 
 }
+
+DamageUp::~DamageUp(){}
 
 

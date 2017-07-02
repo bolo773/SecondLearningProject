@@ -7,7 +7,8 @@
 
 #ifndef SRC_POWERUP_HPP_
 #define SRC_POWERUP_HPP_
-
+#include "Player.hpp"
+#include "Object.hpp"
 class Powerup : public Object{
 
 

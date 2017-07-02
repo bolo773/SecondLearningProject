@@ -7,9 +7,9 @@
 
 #include "Enemy.hpp"
 
-Enemy::Enemy(int x,int y,int w,int h,int vel,SDL_Texture* texture,SDL_Texture* bullet_texture, Mix_Chunk* shootsound, SDL_Renderer* renderer)
-: Object(x,y,w,h,vel,texture,renderer) , bullet_texture(bullet_texture),hp(10),c_hp(10),bullet_timer(0), shootsound(shootsound){
-
+Enemy::Enemy(int x,int y,int w,int h,int vel,SDL_Texture* texture,SDL_Texture* bullet_texture, Mix_Chunk* shootsound,Mix_Chunk* deathsound, SDL_Renderer* renderer)
+: Object(x,y,w,h,vel,texture,renderer) , bullet_texture(bullet_texture),hp(10),c_hp(10),bullet_timer(0), shootsound(shootsound), deathsound(deathsound){
+damage = 1;
 
 }
 

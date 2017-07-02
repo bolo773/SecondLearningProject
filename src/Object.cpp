@@ -34,6 +34,11 @@ void Object::move(float angle){
 
 }
 
+Object::Object() : drawbox({0,0,0,0}),hitbox({0,0,0,0}), render_target(NULL), texture(NULL), velocity(0), m_timer(0){
+
+
+}
+
 
 void Object::draw(){
 

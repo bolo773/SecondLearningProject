@@ -40,6 +40,27 @@ void Textbox::print(char* text){
 
 }
 
+void Textbox::print(const char* text){
+
+
+	SDL_Color fg = {0,0,0};
+
+	SDL_Surface* ftext = TTF_RenderText_Solid(font, text,fg);
+
+	SDL_Texture * temp = SDL_CreateTextureFromSurface( renderer, ftext );
+
+	SDL_QueryTexture(temp,NULL,NULL,&textarea.w,&textarea.h);
+
+	SDL_FreeSurface(ftext);
+
+	if(noback == false) SDL_RenderCopy(renderer,background,NULL,&border);
+	SDL_RenderCopy( renderer, temp, NULL, &textarea);
+
+}
+
+
+
+
 void Textbox::setback(bool x){
 
 	noback = x;

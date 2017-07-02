@@ -18,14 +18,17 @@ protected:
 
 	int hp;
 	int c_hp;
+	int damage;
+
 	Uint32 bullet_timer;
 	SDL_Texture* bullet_texture;
 	Mix_Chunk* shootsound;
+	Mix_Chunk* deathsound;
 
 
 public:
 
-	Enemy(int,int,int,int,int,SDL_Texture*,SDL_Texture*,Mix_Chunk*, SDL_Renderer* );
+	Enemy(int,int,int,int,int,SDL_Texture*,SDL_Texture*,Mix_Chunk*, Mix_Chunk*,SDL_Renderer* );
 	~Enemy();
 	int get_hp();
 	int get_c_hp();

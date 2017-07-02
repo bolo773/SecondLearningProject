@@ -23,12 +23,14 @@ class Player : public Object {
 	SDL_Texture* bullet_texture;
 	SDL_Texture* head_texture;
 	Mix_Chunk* shootsound;
+	Mix_Chunk* deathsound;
 	SDL_Rect head_drawbox;
 
 
 public:
 
-	Player(int,int,int,int,int,SDL_Texture*,SDL_Texture*, SDL_Texture*,Mix_Chunk*,SDL_Renderer*);
+	Player(int,int,int,int,int,SDL_Texture*,SDL_Texture*, SDL_Texture*,Mix_Chunk*,Mix_Chunk*,SDL_Renderer*);
+	Player();
 	int get_hp();
 	int get_c_hp();
 	void set_c_hp(int);

@@ -7,12 +7,14 @@
 
 #ifndef SRC_DAMAGEUP_HPP_
 #define SRC_DAMAGEUP_HPP_
+#include "Powerup.hpp"
 
 class DamageUp : public Powerup{
 
-void activate(Player*);
-DamageUp(int ,int ,int ,int ,int , SDL_Texture* ,SDL_Renderer* );
-~DamageUp();
+public:
+	void activate(Player*);
+	DamageUp(int ,int ,int ,int ,int , SDL_Texture* ,SDL_Renderer* );
+	~DamageUp();
 
 };
 

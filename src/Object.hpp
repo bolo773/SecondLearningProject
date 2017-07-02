@@ -39,6 +39,7 @@ public:
 	Object(int,int,int,int,int,SDL_Texture*,SDL_Renderer*);
 	virtual void move(float);
 	virtual void draw();
+	Object();
 	virtual ~Object();
 	SDL_Rect get_hitbox();
 	bool check_col(Object &b);

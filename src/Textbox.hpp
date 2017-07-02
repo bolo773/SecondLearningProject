@@ -2,7 +2,6 @@
 
 #ifndef TEXTBOX_HPP_
 #define TEXTBOX_HPP_
-
 #include "Object.hpp"
 
 class Textbox {
@@ -19,6 +18,7 @@ public:
 	Textbox(int,int,int,int,SDL_Texture*,SDL_Renderer*, TTF_Font* );
 	Textbox();
 	void print(char*);
+	void print(const char*);
 	void setback(bool);
 	void move(int,int);
 

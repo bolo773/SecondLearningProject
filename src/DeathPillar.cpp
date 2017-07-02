@@ -7,8 +7,8 @@
 
 #include "DeathPillar.hpp"
 
-DeathPillar::DeathPillar(int x, int y, int w, int h, int vel, SDL_Texture* texture, SDL_Texture* bullet_texture, Mix_Chunk* shootsound, SDL_Renderer* renderer)
-: Enemy(x,y,w,h,vel,texture,bullet_texture,shootsound,renderer){
+DeathPillar::DeathPillar(int x, int y, int w, int h, int vel, SDL_Texture* texture, SDL_Texture* bullet_texture, Mix_Chunk* shootsound,Mix_Chunk* deathsound, SDL_Renderer* renderer)
+: Enemy(x,y,w,h,vel,texture,bullet_texture,shootsound,deathsound,renderer){
 
 
 

@@ -7,8 +7,11 @@
 
 #include "Player.hpp"
 
-Player::Player(int x,int y,int w,int h,int vel,SDL_Texture* texture,SDL_Texture* bullet_texture, SDL_Texture* head_texture,Mix_Chunk* shootsound ,SDL_Renderer* renderer)
-: Object(x,y,w,h,vel,texture,renderer),head_drawbox{x,y,w,h} , bullet_texture(bullet_texture),hp(10),c_hp(10),bullet_timer(0), shootsound(shootsound), head_texture(head_texture),c_sprite(0){
+Player::Player(int x,int y,int w,int h,int vel,SDL_Texture* texture,SDL_Texture* bullet_texture, SDL_Texture* head_texture,Mix_Chunk* shootsound ,Mix_Chunk* deathsound ,SDL_Renderer* renderer)
+: Object(x,y,w,h,vel,texture,renderer),head_drawbox{x,y,w,h} ,
+  bullet_texture(bullet_texture),hp(10),c_hp(10),bullet_timer(0),
+  shootsound(shootsound), head_texture(head_texture),c_sprite(0),
+  deathsound(deathsound) {
 
 	damage = 2;
 
@@ -17,6 +20,13 @@ Player::Player(int x,int y,int w,int h,int vel,SDL_Texture* texture,SDL_Texture*
 
 	hitbox.x = drawbox.x +(drawbox.w - hitbox.w )/2;
 	hitbox.y = drawbox.y +(drawbox.h - hitbox.h )/2;
+
+}
+
+Player::Player()
+: Object() , hp(0), bullet_texture(NULL), head_texture(NULL), c_hp(0), c_sprite(0), damage(0), bullet_timer(0), shootsound(NULL), deathsound(NULL) {
+
+
 
 }
 
@@ -53,7 +63,7 @@ void Player::shoot(float angle, std::vector<Bullet*>* bullet_list){
 
 	Uint32 temptime = SDL_GetTicks()/100;
 
-		if ((temptime - bullet_timer) %5 == 2){
+		if ((temptime - bullet_timer) >= 2){
 
 			Bullet* temp = new Bullet(drawbox.x+ .5 * drawbox.w, drawbox.y + .5 * drawbox.h , 30, 30, 20, angle, bullet_texture,render_target);
 			Mix_PlayChannel( -1, shootsound, 0 );
@@ -97,19 +107,20 @@ void Player::update( std::vector<Bullet*>* bullet_out,const Uint8* state){
 		draw_idle();
 
 	}
+
 	if(state[SDL_SCANCODE_UP]) {
 		shoot(90,bullet_out);
 		c_sprite = 0;
-		draw();
-	}
+	} else
 	if(state[SDL_SCANCODE_DOWN]){
 		shoot(270,bullet_out);
 		c_sprite = 2;
-	}
+	} else
 	if(state[SDL_SCANCODE_LEFT]){
 		shoot(180,bullet_out);
 		c_sprite = 3;
-	}
+	} else
+
 	if(state[SDL_SCANCODE_RIGHT]){
 		shoot(0,bullet_out);
 		c_sprite = 1;
@@ -150,5 +161,11 @@ int Player::get_damage(){
 
 	return damage;
 
+}
+
+
+void Player::set_damage(int newval){
+
+	damage= newval;
 }
 

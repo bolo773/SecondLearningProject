@@ -13,7 +13,7 @@
 class DeathPillar : public Enemy{
 
 public:
-	DeathPillar(int,int,int,int,int,SDL_Texture*,SDL_Texture*,Mix_Chunk*, SDL_Renderer* );
+	DeathPillar(int,int,int,int,int,SDL_Texture*,SDL_Texture*,Mix_Chunk*,Mix_Chunk*, SDL_Renderer* );
 	void draw();
 	virtual void update(std::vector<Bullet*>* bullet_list);
 	void shoot(float,std::vector<Bullet*>*);
