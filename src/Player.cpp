@@ -126,12 +126,17 @@ void Player::update( std::vector<Bullet*>* bullet_out,const Uint8* state){
 		c_sprite = 1;
 	}
 
+	if(drawbox.x < 0) place(0,drawbox.y);
+	if(drawbox.x > SCREEN_WIDTH) place(SCREEN_WIDTH,drawbox.y);
+	if(drawbox.y < 0) place(drawbox.x,0);
+	if(drawbox.y > SCREEN_HEIGHT) place(drawbox.x,SCREEN_HEIGHT);
+
 	SDL_Rect srcrect{c_sprite*100,0,100,100};
 	SDL_RenderCopy( render_target, head_texture, &srcrect, &head_drawbox);
 
 
-
 }
+
 
 void Player::move(float angle){
 
@@ -145,6 +150,7 @@ void Player::move(float angle){
 		drawbox.x += cos(radangle) * velocity;
 		hitbox.x +=   cos(radangle) * velocity;
 		head_drawbox.x +=   cos(radangle) * velocity;
+		//std::cout << cos(radangle);
 
 		drawbox.y -= sin(radangle) * velocity;
 		hitbox.y -= sin(radangle) * velocity;
@@ -153,6 +159,21 @@ void Player::move(float angle){
 
 		m_timer = temptimer;
 	}
+
+}
+
+void Player::place(int x, int y){
+
+	int xdisp = drawbox.x -x;
+	int ydisp = drawbox.y -y;
+
+	drawbox.x = x;
+	hitbox.x -= xdisp;
+	head_drawbox.x -= xdisp;
+
+	drawbox.y = y;
+	hitbox.y -=  ydisp;
+	head_drawbox.y -= ydisp;
 
 }
 

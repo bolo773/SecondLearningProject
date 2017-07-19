@@ -20,7 +20,6 @@ public:
 	virtual void update(std::vector<Bullet*>* bullet_list);
 	void shoot(float,std::vector<Bullet*>*);
 
-
 };
 
 

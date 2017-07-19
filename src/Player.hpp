@@ -39,6 +39,7 @@ public:
 	void update( std::vector<Bullet*>* , const Uint8* );
 	void shoot(float , std::vector<Bullet*>*);
 	void move(float);
+	void place(int,int);
 	void regen();
 	int get_damage();
 	void set_damage(int);

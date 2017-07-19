@@ -16,23 +16,44 @@ Object::Object(int x,int y,int w,int h,int vel, SDL_Texture* texture,SDL_Rendere
 
 void Object::move(float angle){
 
-	double radangle = (angle * pi / 180);
+	double radangle = ((angle / 180) * pi);
 
 	Uint32 temptimer = SDL_GetTicks()/10;
 
 
 	if(m_timer != temptimer){
 
-		drawbox.x += cos(radangle) * velocity;
-		hitbox.x +=   cos(radangle) * velocity;
+		float xdisp = cos(radangle) * velocity;
+		float ydisp = sin(radangle) * velocity;
+		if(xdisp > -.1 && xdisp < .1 ) xdisp = 0;
+		if(ydisp > -.1 && ydisp < .1 ) ydisp = 0;
 
-		drawbox.y -= sin(radangle) * velocity;
-		hitbox.y -= sin(radangle) * velocity;
+
+		drawbox.x += xdisp;
+		hitbox.x +=   xdisp;
+
+		drawbox.y -= ydisp;
+		hitbox.y -=  ydisp;
 
 		m_timer = temptimer;
 	}
 
 }
+
+void Object::place(int x, int y){
+
+	int xdisp = drawbox.x -x;
+	int ydisp = drawbox.y -y;
+
+	drawbox.x = x;
+	hitbox.x +=   xdisp;
+
+	drawbox.y = y;
+	hitbox.y -=  ydisp;
+
+}
+
+
 
 Object::Object() : drawbox({0,0,0,0}),hitbox({0,0,0,0}), render_target(NULL), texture(NULL), velocity(0), m_timer(0){
 

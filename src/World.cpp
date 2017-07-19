@@ -195,6 +195,7 @@ void World::enemy_update(){
 					Bullet* temp_bullet = player_bullets[x];
 					delete temp_bullet;
 					player_bullets.erase(b);
+					Mix_PlayChannel(-1,sfx[3],0);
 
 					if(enemies[i]->get_c_hp() <= 0){
 						enemies.erase(z);
@@ -250,6 +251,7 @@ World::World()
 	sfx.push_back(Mix_LoadWAV("Levelup.wav"));
 	sfx.push_back(Mix_LoadWAV("deathsound.wav"));
 	sfx.push_back(Mix_LoadWAV("Explosion.wav"));
+	sfx.push_back(Mix_LoadWAV("Hit_Hurt7.wav"));
 
 
 	Textbox textbox_temp( 0,0,SCREEN_WIDTH,SCREEN_HEIGHT,textures[7], game_renderer, font );
