@@ -34,6 +34,7 @@ public:
 	int get_c_hp();
 	void set_c_hp(int);
 	void draw();
+	void place(int,int);
 	virtual void update(std::vector<Bullet*>* bullet_list);
 	virtual void shoot(float,std::vector<Bullet*>*);
 

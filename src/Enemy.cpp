@@ -52,6 +52,21 @@ void Enemy::shoot(float angle, std::vector<Bullet*>* bullet_list){
 
 }
 
+void Enemy::place(int x, int y){
+
+	int xdisp = drawbox.x -x;
+	int ydisp = drawbox.y -y;
+
+	drawbox.x = x;
+	hitbox.x -= xdisp;
+
+
+	drawbox.y = y;
+	hitbox.y -=  ydisp;
+
+
+}
+
 Enemy::~Enemy(){}
 
 void Enemy::update(std::vector<Bullet*>* bullet_list){

@@ -5,6 +5,7 @@
  *      Author: bolo
  */
 #include "World.hpp"
+#include "Error.hpp"
 #include <fstream>
 
 
@@ -94,12 +95,12 @@ void World::add_enemy(){
 		switch(enemy_roll) {
 
 		case 0:
-			temp = new Twitchy(x,y,SCREEN_WIDTH/12,SCREEN_HEIGHT/12,3, textures[10],textures[5],shootsound,sfx[1],game_renderer);
+			temp = new Twitchy(x,y,SCREEN_WIDTH/12,SCREEN_HEIGHT/12,3, textures[10],textures[5],sfx[4],sfx[1],game_renderer);
 			enemies.push_back(temp);
 			break;
 
 		case 1:
-			temp = new DeathPillar(x,y,SCREEN_WIDTH/12,SCREEN_HEIGHT/12,3,textures[2],textures[5],shootsound,sfx[1],game_renderer);
+			temp = new DeathPillar(x,y,SCREEN_WIDTH/12,SCREEN_HEIGHT/12,3,textures[2],textures[5],sfx[4],sfx[1],game_renderer);
 			enemies.push_back(temp);
 			break;
 
@@ -164,22 +165,7 @@ void World::enemy_update(){
 	//create iterator for bullets
 	std::vector<Enemy*>::iterator z = enemies.begin();
 
-	for(unsigned int i = 0; i < enemies.size();i++){
 
-		if (enemies[i]->get_hitbox().x <= 0 || (enemies[i]->get_hitbox().x + enemies[i]->get_hitbox().w) >= SCREEN_WIDTH){
-
-			enemies.erase(z);
-			std::cout << "erased enemy \n" << std::endl;
-
-		}else if(enemies[i]->get_hitbox().y <= 0 || (enemies[i]->get_hitbox().y + enemies[i]->get_hitbox().h) >= SCREEN_HEIGHT){
-
-			enemies.erase(z);
-			std::cout << "erased enemy \n" << std::endl;
-
-		}
-
-		z++;
-	}
 	z = enemies.begin();
 
 	for(unsigned int i = 0; i < enemies.size();i++){
@@ -242,17 +228,23 @@ World::World()
 
 	}
 
+	std::ifstream audio_resources("audio.txt");
+
+	while (!audio_resources.eof()){
+
+		getline(audio_resources,resourceelement);
+		std::cout << "loaded: " <<  resourceelement.c_str() << std::endl;
+		char carray[40];
+		strcpy(carray,resourceelement.c_str());
+		sfx.push_back(Mix_LoadWAV(carray));
+	}
+
 	Background temp_background(game_renderer,textures[3]);
 	background = temp_background;
 
 	font = TTF_OpenFont("Roboto-Regular.ttf",20);
 
-	shootsound = Mix_LoadWAV( "Laser_Shoot.wav" );
-	sfx.push_back(Mix_LoadWAV("Levelup.wav"));
-	sfx.push_back(Mix_LoadWAV("deathsound.wav"));
-	sfx.push_back(Mix_LoadWAV("Explosion.wav"));
-	sfx.push_back(Mix_LoadWAV("Hit_Hurt7.wav"));
-
+	if (font == NULL) throw Error("Font not found");
 
 	Textbox textbox_temp( 0,0,SCREEN_WIDTH,SCREEN_HEIGHT,textures[7], game_renderer, font );
 	endgame_message = textbox_temp;

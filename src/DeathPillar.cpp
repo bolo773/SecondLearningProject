@@ -28,6 +28,11 @@ void DeathPillar::update(std::vector<Bullet*>* bullet_list){
 
 
 	shoot(0,bullet_list);
+	if(drawbox.x < 0) place(0,drawbox.y);
+	if(drawbox.x > SCREEN_WIDTH) place(SCREEN_WIDTH,drawbox.y);
+	if(drawbox.y < 0) place(drawbox.x,0);
+	if(drawbox.y > SCREEN_HEIGHT) place(drawbox.x,SCREEN_HEIGHT);
+
 
 
 }

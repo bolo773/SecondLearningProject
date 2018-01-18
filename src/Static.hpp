@@ -7,6 +7,8 @@
 
 class Static{
 
+protected:
+
 	SDL_Rect drawbox;
 
 	SDL_Renderer* render_target;

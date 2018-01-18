@@ -34,6 +34,13 @@ void Twitchy::update(std::vector<Bullet*>* bullet_list){
 
 	move(dir);
 
+	//this makes sure the enemy stays in the screen
+	if(drawbox.x < 0) place(0,drawbox.y);
+	if(drawbox.x > SCREEN_WIDTH) place(SCREEN_WIDTH,drawbox.y);
+	if(drawbox.y < 0) place(drawbox.x,0);
+	if(drawbox.y > SCREEN_HEIGHT) place(drawbox.x,SCREEN_HEIGHT);
+
+
 	shoot(dir,bullet_list);
 
 

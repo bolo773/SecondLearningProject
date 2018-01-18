@@ -88,6 +88,22 @@ void Player::update( std::vector<Bullet*>* bullet_out,const Uint8* state){
 
 
 	//handle player events
+	if(state[SDL_SCANCODE_W] && state[SDL_SCANCODE_D]){
+		move(45);
+		draw();
+	} else
+	if(state[SDL_SCANCODE_S] && state[SDL_SCANCODE_D]) {
+		move(315);
+		draw();
+	} else
+	if(state[SDL_SCANCODE_A]&& state[SDL_SCANCODE_W]) {
+		move(135);
+		draw();
+	} else
+	if(state[SDL_SCANCODE_S] && state[SDL_SCANCODE_A]){
+		move(225);
+		draw();
+	} else
 	if(state[SDL_SCANCODE_W]){
 		move(90);
 		draw();

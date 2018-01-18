@@ -46,7 +46,6 @@ class World {
 	Background background;
 
 	//sounds
-	Mix_Chunk* shootsound;
 	std::vector<Mix_Chunk*> sfx;
 
 	const Uint8* state;

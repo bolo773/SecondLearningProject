@@ -4,8 +4,14 @@
 Textbox::Textbox(int x,int y,int w,int h,SDL_Texture* background, SDL_Renderer* renderer, TTF_Font* font ){
 
 	SDL_Rect temp = {x,y,w,h};
-	textarea = temp;
+
 	border = temp;
+
+	textarea = temp;
+	textarea.w = w -10 ;
+	textarea.x += (w - textarea.w) / 2;
+
+
 	this-> background = background;
 	this->renderer = renderer;
 	this->font = font;
@@ -36,6 +42,7 @@ void Textbox::print(char* text){
 	SDL_FreeSurface(ftext);
 
 	if(noback == false) SDL_RenderCopy(renderer,background,NULL,&border);
+
 	SDL_RenderCopy( renderer, temp, NULL, &textarea);
 
 }
